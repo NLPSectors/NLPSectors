@@ -29,7 +29,7 @@ def app():
     all_filenames.append('Todos los posibles')
 
     mercado_elegido = st.selectbox(
-        '¿En que mercado quieres analizar los NLP Sectors?',
+        '¿En qué mercado quieres analizar los NLP Sectors?',
         all_filenames)
 
     ruta=r"TextosCSV/"+mercado_elegido
