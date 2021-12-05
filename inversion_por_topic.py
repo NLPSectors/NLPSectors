@@ -76,7 +76,7 @@ def app():
 
 
     st.title('INVERSIÓN TEMÁTICA')
-    st.write('Elija el tema que desee, el algoritmo buscará que sectores coinciden y que empresas pertenecen a estos sectores')
+    st.subheader('Elija el tema que desee, el algoritmo buscará qué sectores coinciden y qué empresas pertenecen a estos sectores')
 
 
     palabra=st.text_input("Introduzca la palabra en la que quiere invertir:")
