@@ -14,7 +14,6 @@ def app():
     with open(pkl_filename, 'rb') as file:
         dataset_cl = pickle.load(file)
 
-
     pkl_filename = "Pickles/clusterlabels.pkl"
     with open(pkl_filename, 'rb') as file:
         clusterlabels = pickle.load(file)

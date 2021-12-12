@@ -29,12 +29,13 @@ def app():
     all_filenames.append('Todos los posibles')
 
     mercado_elegido = st.selectbox(
-        '¿En qué mercado quieres analizar los NLP Sectors?',
+        '¿En que mercado quieres analizar los NLP Sectors?',
         all_filenames)
 
     ruta=r"TextosCSV/"+mercado_elegido
-
+    
     data=dataset_cl.drop(['ticker'],axis=1)   
+    
 
     if mercado_elegido=='Todos los posibles':
         dataset_mercado=dataset_cl
