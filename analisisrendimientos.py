@@ -20,6 +20,8 @@ def app():
 
     etf_old = pd.read_csv('old_etfs/ETFs_close_Vanguard.csv', index_col=0,sep = ';',parse_dates=False)
     new_index = pd.read_csv('creationetfs/Cotizaciones_indices_new.csv', index_col=0,sep = ',')
+    listado=new_index.columns.map(int).sort_values().map(str)
+    new_index=new_index[listado]
 
 
     st.title('COMPARACIÓN DE LOS RENDIMIENTOS DEL SP500')
@@ -35,6 +37,7 @@ def app():
     dataset_mercado=dataset_mercado.drop_duplicates(subset=['ticker']).reset_index(drop=True)
 
     indice_seleccion=dataset_cl[dataset_cl.ticker.isin(dataset_mercado.ticker)].index
+
 
     #CREACION DE TOPICS
     def textos_def_topics(textos,etiquetas_topic,ticker):
@@ -94,7 +97,7 @@ def app():
     ayudas=['No necesito ayuda','Buscar en que consiste un tema en particular','Buscar una palabra para ver a que tema pertenece']
     eleccion=st.radio('Si necesita ayuda en saber en que consiste cada sector tiene varias opciones para elegir:',ayudas)
 
-    if eleccion=='Buscar en que consiste un tema en particular':
+    if eleccion=='Buscar en que consiste un sector en particular':
         
         topic_label = st.selectbox(
             'Elija un topic para ver como es:',
@@ -155,7 +158,7 @@ def app():
         j=0
         st.header("Seleccione los NLP Sectors")
         
-        for nlpsectors in new_index.columns.map(int).sort_values().map(str):
+        for nlpsectors in new_index.columns:
             tick_sectors[j] = st.checkbox(nlpsectors)
             j=j+1
 
@@ -204,6 +207,9 @@ def app():
     new_index_ret.iloc[0,:]=1
     new_index_ret=new_index_ret.cumsum()
 
+    
+
+   
 
     etf_old_seleccion=etf_old.loc[:,tick_etfs].copy()
     etf_old_ret_seleccion=etf_old_ret.loc[:,tick_etfs].copy()
